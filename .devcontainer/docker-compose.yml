@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VARIANT: 1
+        INSTALL_NODE: "true"
+
+    env_file: .env
+
+    ports:
+      - 3000:3000
+      - 5000:5000
+
+    volumes:
+      - trygo-workspace:/workspace
+
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+  db:
+    image: postgres:11.5
+    env_file: .env
+    volumes:
+      - trygo-db:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    env_file: .env
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  trygo-workspace:
+    driver: local
+  trygo-db:
+    driver: local

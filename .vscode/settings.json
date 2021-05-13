@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "eslint.workingDirectories": [
+    "./client",
+  ],
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "javascript.format.enable": false,
+  "typescript.format.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+}

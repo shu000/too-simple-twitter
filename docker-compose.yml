@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    env_file: .env
+
+    ports:
+      - 80:80
+
+  db:
+    build:
+      context: .
+      dockerfile: db.Dockerfile
+    env_file: .env
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+      - tstp-db:/var/lib/postgresql/data
+
+volumes:
+  tstp-db:
+    driver: local
